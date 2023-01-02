@@ -73,7 +73,7 @@ def feat_extract(dataloader, model, device, feat_layer, save_dir,wav2lang):
                     writer(iid,new_feat)
                     f.write("{} {} {}\n".format(uttid[0], label[0], new_feat.shape[0]))
                     print(iid +" "+"feature extracted")
-                total += 1
+                    total += 1
     print("Total extracted features :{}".format(total))
 
 def main():
