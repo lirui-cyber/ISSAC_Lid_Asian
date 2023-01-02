@@ -1,0 +1,49 @@
+{
+  "model_name": "xvector_self_attention",
+  "exp": "exp_zh_en_id_tl_lo_my",
+  "wav2vec_info":{
+    "model_path": "pretrained-model/xlsr_53_56k.pt",
+    "model_name": "pretrained_model",
+    "layer": 16,
+    "m_size": "large",
+    "_comment": "FOr language recognition, XLSR-53 is recommended as the feature extractor"
+  },
+  "Input": {
+    "userroot": "/home3/lirui001/ISSAC_Lid_Asian/",
+    "valid_set": "none",
+    "data": "data/",
+    "clean_training_set": "train_zh_en_id_tl_lo_my",
+    "clean_test_set": "en_test zh_test id_test tl_test th_test vi_test",
+    "noise_training_set": "train_zh_en_id_tl_lo_my_5th",
+    "noise_test_set": "en_test en_test_20_snrs en_test_15_snrs en_test_10_snrs en_test_5_snrs zh_test  zh_test_20_snrs zh_test_15_snrs zh_test_10_snrs zh_test_5_snrs id_test id_test_20_snrs id_test_15_snrs id_test_10_snrs id_test_5_snr tl_test tl_test_20_snrs tl_test_15_snrs tl_test_10_snrs tl_test_5_snrs th_test th_test_20_snrs th_test_15_snrs th_test_10_snrs th_test_5_snrs vi_test vi_test_20_snrs vi_test_15_snrs vi_test_10_snrs vi_test_5_snrs", 
+    "clean_set": "train_zh_en_id_tl_lo_my en_test zh_test id_test tl_test th_test vi_test",
+    "log": "exp_zh_en_id_tl_lo_my/log/",
+    "_comment": "Input your data dir here, each line: data_file_path lable_index segment_len"
+  },
+  "model_config": {
+    "model": "xsa",
+    "feat_dim": 1024,
+    "reduc_dim": 256,
+    "d_k": 64,
+    "d_ff": 2048,
+    "n_heads": 8,
+    "n_language": 5,
+    "_comment": "Model configurations, do not change unless you need to modify the model"
+  },
+  "optim_config": {
+    "learning_rate": 0.0001,
+    "epochs": 35,
+    "batch": 128,
+    "optimizer": "Adam",
+    "scheduler": "warmup_cosine",
+    "num_work": 4,
+    "device": 0,
+    "DDP": "False",
+    "warmup_step": -1,
+    "valid_epochs": 0,
+    "seed": -1,
+    "_comment": "warmup_step = -1 denotes default value, num_work is better to be your_cpu_cores/4"
+  },
+  "kaldi": "/home/maison2/kaldi/",
+  "check_point": "exp/xsa_34.ckpt"
+}
